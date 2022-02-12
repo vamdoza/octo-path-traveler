@@ -13,17 +13,15 @@ if [ ! -d ./tmp ]; then
   git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}" ./tmp
 fi
 cp -r "$buildfolder/." ./tmp
-pwd
 cd ./tmp
-pwd
-ls
 git status
 git remote -v
-git add *
+git config --global user.email "$GITHUB_EMAIL"
 git config --global user.name "$GITHUB_USER"
+git add *
+git status
 git commit -m "unity cloud build"
 git status
 git log -3
 git push --force
 git status
-git remote -v
