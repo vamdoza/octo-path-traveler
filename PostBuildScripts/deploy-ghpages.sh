@@ -3,7 +3,7 @@
 set -x
 
 ls
-export buildfolder="$(find . -regex '.\/temp[^\/]*\/default-webgl\/' -print -quit)"
+export buildfolder="$(find . -regex '.\/temp[^\/]*\/default-webgl' -print -quit)"
 if [ -z "$buildfolder" ]; then
   echo "Could not find build folder"
   exit 1
@@ -12,7 +12,7 @@ fi
 if [ ! -d ./tmp ]; then
   git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}" ./tmp
 fi
-cp -r "$buildfolder*" ./tmp
+cp -r "$buildfolder/*" ./tmp
 pwd
 cd ./tmp
 pwd
