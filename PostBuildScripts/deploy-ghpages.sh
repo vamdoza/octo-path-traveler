@@ -14,6 +14,9 @@ if [ ! -d ./tmp ]; then
 fi
 cp -r "$buildfolder" ./tmp
 cd ./tmp
+ls
+pwd
+echo "$(ls -l)"
 git add Build
 git config --global user.name "$GITHUB_USER"
 git commit -m "unity cloud build"
