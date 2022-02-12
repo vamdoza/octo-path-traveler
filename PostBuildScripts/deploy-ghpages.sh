@@ -2,7 +2,8 @@
 
 set -x
 
-export buildfolder="$(find . -regex '.\/temp[^\/]*\/WebGL\/Build' -print -quit)"
+ls -l
+export buildfolder="$(find . -regex '.\/temp[^\/]*\/default-webgl\/Build' -print -quit)"
 if [ -z "$buildfolder" ]; then
   echo "Could not find build folder"
   exit 1
