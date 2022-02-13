@@ -1,5 +1,6 @@
 #!/bin/sh
-
+echo "====================DEPLOYMENT_TO_GITHUB_PAGES_START============================="
+printenv
 set -x
 
 ls
@@ -16,7 +17,9 @@ cp -r "$buildfolder/." ./tmp
 cd ./tmp
 git config --global user.email "$GITHUB_EMAIL"
 git config --global user.name "$GITHUB_USER"
-git add *
+git add Build
 git commit -m "unity cloud build"
 git log -1
 git push --force
+
+echo "====================DEPLOYMENT_TO_GITHUB_PAGES_END============================="
