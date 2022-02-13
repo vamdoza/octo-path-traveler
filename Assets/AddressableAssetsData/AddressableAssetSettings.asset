@@ -59,6 +59,20 @@ MonoBehaviour:
         m_Value: ServerData/[BuildTarget]
       - m_Id: 011d28139e8287c40b4d419ab944a003
         m_Value: http://localhost/[BuildTarget]
+    - m_InheritedParent: 
+      m_Id: f418dc515e72980429f07964258170d7
+      m_ProfileName: dev-profile
+      m_Values:
+      - m_Id: 00d167aab0ee1a44dbc00f930341aca3
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: f44ed72a3a4dcf44bb75f0191cbdf78d
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: b68ab5c6e4f42334985825bba4b3cbdd
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: c06f6110f0ce7614895a958b9b676835
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: 011d28139e8287c40b4d419ab944a003
+        m_Value: https://2c6104ea-92b8-4a98-a51f-61ac67af113c.client-api.unity3dusercontent.com/client_api/v1/buckets/92089549-6578-40c4-8206-43a0f548fbe1/release_by_badge/latest/entry_by_path/content/?path=
     m_ProfileEntryNames:
     - m_Id: 00d167aab0ee1a44dbc00f930341aca3
       m_Name: BuildTarget
@@ -92,7 +106,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5340db862824444e981031cf9d77d3a, type: 2}
   - {fileID: 11400000, guid: 6b225a483539e724cb673e0669d424c6, type: 2}
   - {fileID: 11400000, guid: 2601ad814e87e4145aaffafb811733d1, type: 2}
-  m_ActiveProfileId: 6c0f172f418ed82479dae0eda212873b
+  m_ActiveProfileId: f418dc515e72980429f07964258170d7
   m_HostingServicesManager:
     m_HostingServiceInfos:
     - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
@@ -109,7 +123,7 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/Windows/StandaloneWindows64
+          m_Data: Library/com.unity.addressables/aa/WebGL/WebGL
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean

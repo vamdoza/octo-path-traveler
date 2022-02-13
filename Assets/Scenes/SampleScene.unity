@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Spawn Addressable Cube
+  m_Text: Load Addressable Cube
 --- !u!222 &110879915
 CanvasRenderer:
   m_ObjectHideFlags: 0
