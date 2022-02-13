@@ -1,9 +1,7 @@
 #!/bin/sh
 echo "====================DEPLOYMENT_TO_GITHUB_PAGES_START============================="
-printenv
 set -x
 
-ls
 export buildfolder="$(find . -regex '.\/temp[^\/]*\/default-webgl' -print -quit)"
 if [ -z "$buildfolder" ]; then
   echo "Could not find build folder"
@@ -16,9 +14,9 @@ fi
 cp -r "$buildfolder/." ./tmp
 cd ./tmp
 git config --global user.email "$GITHUB_EMAIL"
-git config --global user.name "$GITHUB_USER"
+git config --global user.name "$USER"
 git add Build
-git commit -m "unity cloud build"
+git commit -m "unity cloud build $UCB_BUILD_NUMBER"
 git log -1
 git push --force
 
