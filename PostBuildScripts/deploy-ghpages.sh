@@ -13,9 +13,12 @@ if [ ! -d ./tmp ]; then
 fi
 cp -r "$buildfolder/." ./tmp
 cd ./tmp
+ls
 git config --global user.email "$GITHUB_EMAIL"
 git config --global user.name "$USER"
 git add Build
+git add StreamingAssets/aa/catalog.json
+git add StreamingAssets/aa/settings.json
 git commit -m "unity cloud build $UCB_BUILD_NUMBER"
 git log -1
 git push --force
