@@ -6,7 +6,12 @@ using UnityEngine;
 
 namespace WizardsEditor.Custom
 {
-    public class UpdateAddressables : Editor
+    /// <summary>
+    /// WIP
+    /// Simple Tool to update addressable bundle from code,
+    /// the goal is test how to automate bundling assets from external sources like cloud storage.
+    /// </summary>
+    public static class UpdateAddressables
     {
         private const string userAssetsPath = "Assets/UserAssets";
         private const string userAssetsGroup = "UserAssets";
@@ -24,6 +29,7 @@ namespace WizardsEditor.Custom
 
         private static void ImportAssetFromExternalSource()
         {
+            // the asset path is meant to be provide from ci/cd pipeline
             const string asset = "E:/UserAssets/51e91bc4bd25ce56bc4963ea01bb1527.jpg";
             var newAssetPath = Path.Combine(userAssetsPath, Path.GetFileName(asset));
             var userAssets = Application.dataPath.Replace("/Assets", $"/{newAssetPath}");
@@ -36,11 +42,10 @@ namespace WizardsEditor.Custom
             }
             catch (Exception ex)
             {
-                // ignored
+                Debug.LogError(ex.Message);
             }
         }
 
-        // return list of asset paths found under dir
         private static string[] GetAllAssetsIn(string path)
         {
             var foundAssets = AssetDatabase.FindAssets(string.Empty, new[] {path});
@@ -55,26 +60,22 @@ namespace WizardsEditor.Custom
 
         private static void AddAssetToGroup(string groupName, string path)
         {
-            // get addressable package
-            var adrSettings = AddressableAssetSettingsDefaultObject.Settings;
-            var usrGrp = adrSettings.FindGroup(groupName);
+            var addressableSettings = AddressableAssetSettingsDefaultObject.Settings;
+            var usrGrp = addressableSettings.FindGroup(groupName);
             if (!usrGrp)
             {
                 throw new Exception($"Addressable: can't find group {groupName}");
             }
 
-            // Add asset to group
             var guid = AssetDatabase.AssetPathToGUID(path);
-            var entry = adrSettings.CreateOrMoveEntry(guid, usrGrp);
+            var entry = addressableSettings.CreateOrMoveEntry(guid, usrGrp);
             if (entry == null)
             {
                 throw new Exception($"Addressable : can't add {path} to group {groupName}");
             }
 
             // simplify addressName
-            //entry.SetAddress(entry.MainAsset.name);
-            entry.SetAddress("UserTexture");
-            Debug.LogFormat("Added entry: {0}", entry.AssetPath);
+            entry.SetAddress(entry.MainAsset.name);
         }
     }
 }
