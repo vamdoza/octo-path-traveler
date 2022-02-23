@@ -7,14 +7,21 @@ namespace Default
     public class LoadByReference : MonoBehaviour
     {
         public AssetReference reference;
-        private AsyncOperationHandle<GameObject> _asyncOperationHandle;
+        private AsyncOperationHandle<GameObject> _asyncHandle;
 
         public void LoadAsset()
         {
-            if (IsLoaded(_asyncOperationHandle)) return;
+            if (IsLoaded(_asyncHandle)) return;
+            _asyncHandle = reference.InstantiateAsync(transform);
+            _asyncHandle.Completed += AsyncHandleOnCompleted;
+        }
 
-            _asyncOperationHandle = reference.LoadAssetAsync<GameObject>();
-            _asyncOperationHandle.Completed += AsyncHandleOnCompleted;
+        public void UnloadAsset()
+        {
+            if (IsLoaded(_asyncHandle))
+            {
+                reference.ReleaseInstance(_asyncHandle.Result);
+            }
         }
 
         private bool IsLoaded(AsyncOperationHandle _handle)
@@ -24,11 +31,7 @@ namespace Default
 
         private void AsyncHandleOnCompleted(AsyncOperationHandle<GameObject> operation)
         {
-            if (operation.Status == AsyncOperationStatus.Succeeded)
-            {
-                Instantiate(reference.Asset, transform);
-            }
-            else
+            if (operation.Status == AsyncOperationStatus.Failed)
             {
                 Debug.LogFormat("reference: {0} could not be loaded", reference.RuntimeKey);
             }
@@ -36,7 +39,7 @@ namespace Default
 
         private void OnDestroy()
         {
-            reference.ReleaseAsset();
+            UnloadAsset();
         }
     }
 }
