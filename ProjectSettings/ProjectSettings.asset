@@ -665,7 +665,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Build: 1
+    Build: 0
     Collab: 0
     Game Performance: 0
     Legacy Analytics: 0
